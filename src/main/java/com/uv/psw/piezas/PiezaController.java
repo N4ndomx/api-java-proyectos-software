@@ -81,7 +81,7 @@ public class PiezaController {
     @PutMapping("/{clave}")
     public ResponseEntity<Pieza> updateProducto(@PathVariable String clave, @RequestBody PiezaCreateDTO piezaDTO) {
 
-        Pieza pieza = piezaRepository.findById(Integer.parseInt(clave)).get();
+        Pieza pieza = piezaRepository.findById(Integer.valueOf(Integer.parseInt(clave))).get();
         pieza.setClave(Integer.parseInt(clave));
         pieza.setDescripcion(piezaDTO.getDescripcion());
         pieza.setNombre(piezaDTO.getNombre());

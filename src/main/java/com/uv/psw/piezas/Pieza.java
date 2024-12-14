@@ -67,7 +67,7 @@ public class Pieza {
     }
 
     public void setClave(int clave) {
-        this.clave = clave;
+        this.clave = (Integer) clave;
     }
 
     public String getNombre() {
