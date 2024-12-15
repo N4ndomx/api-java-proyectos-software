@@ -1,6 +1,7 @@
 package com.uv.psw.Asistencia.dto;
 
 
+import com.uv.psw.Asistencia.TipoAsistencia;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -13,7 +14,7 @@ public class AsistenciaCreateDTO {
 
     private LocalTime hora;
 
-    private String tipoAsistencia;
+    private TipoAsistencia tipoAsistencia;
 
 
     // Getters y Setters
@@ -41,11 +42,11 @@ public class AsistenciaCreateDTO {
         this.hora = hora;
     }
 
-    public String getTipoAsistencia() {
+    public  TipoAsistencia getTipoAsistencia() {
         return tipoAsistencia;
     }
 
-    public void setTipoAsistencia(String tipoAsistencia) {
+    public void setTipoAsistencia(TipoAsistencia tipoAsistencia) {
         this.tipoAsistencia = tipoAsistencia;
     }
 }

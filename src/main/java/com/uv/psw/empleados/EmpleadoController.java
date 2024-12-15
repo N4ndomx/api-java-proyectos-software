@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/empleados")
+@RequestMapping("/api/empleados")
 public class EmpleadoController {
 
     private final EmpleadoService empleadoService;
@@ -55,7 +55,7 @@ public class EmpleadoController {
      * @return Empleado encontrado.
      */
     @GetMapping("/{id}")
-    public ResponseEntity<Empleado> obtenerEmpleadoPorId(@PathVariable Long id) {
+    public ResponseEntity<Empleado> obtenerEmpleadoPorId(@PathVariable String id) {
         try {
             Optional<Empleado> empleado = empleadoService.obtenerEmpleadoPorId(id);
             return empleado.map(ResponseEntity::ok)
@@ -89,7 +89,7 @@ public class EmpleadoController {
      * @return Empleado actualizado.
      */
     @PutMapping("/{id}")
-    public ResponseEntity<Empleado> actualizarEmpleado(@PathVariable Long id, @RequestBody Empleado empleado) {
+    public ResponseEntity<Empleado> actualizarEmpleado(@PathVariable String id, @RequestBody Empleado empleado) {
         try {
             Optional<Empleado> actualizado = empleadoService.actualizarEmpleado(id, empleado);
             return actualizado.map(ResponseEntity::ok)
@@ -106,7 +106,7 @@ public class EmpleadoController {
      * @return Respuesta indicando éxito o error.
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarEmpleado(@PathVariable Long id) {
+    public ResponseEntity<Void> eliminarEmpleado(@PathVariable String id) {
         try {
             empleadoService.eliminarEmpleado(id);
             return ResponseEntity.noContent().build();

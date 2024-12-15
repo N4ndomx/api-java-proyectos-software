@@ -1,5 +1,6 @@
 package com.uv.psw.empleados;
 
+import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,7 +39,7 @@ public class EmpleadoService {
      * @return Optional con el empleado encontrado o vacío si no existe.
      * @throws RuntimeException si ocurre algún error durante la búsqueda.
      */
-    public Optional<Empleado> obtenerEmpleadoPorId(Long id) {
+    public Optional<Empleado> obtenerEmpleadoPorId(String id) {
         try {
             return empleadoRepository.findById(id);
         } catch (Exception e) {
@@ -71,7 +72,9 @@ public class EmpleadoService {
     @Transactional
     public Empleado crearEmpleado(Empleado empleado) {
         try {
-            empleado.setClave(generarClave(empleado.getRol()));
+            empleado.setMatricula(generarClave(empleado.getRol()));
+            
+           
             return empleadoRepository.save(empleado);
         } catch (Exception e) {
             throw new RuntimeException("Error al crear el empleado: " + e.getMessage(), e);
@@ -88,7 +91,7 @@ public class EmpleadoService {
      * @throws RuntimeException si ocurre algún error durante la actualización.
      */
     @Transactional
-    public Optional<Empleado> actualizarEmpleado(Long id, Empleado empleadoDetalles) {
+    public Optional<Empleado> actualizarEmpleado(String id, Empleado empleadoDetalles) {
         try {
             return empleadoRepository.findById(id).map(empleado -> {
                 empleado.setNombre(empleadoDetalles.getNombre());
@@ -113,11 +116,15 @@ public class EmpleadoService {
      * @throws RuntimeException si ocurre algún error durante la eliminación.
      */
     @Transactional
-    public void eliminarEmpleado(Long id) {
+    public void eliminarEmpleado(String id) {
         try {
-            empleadoRepository.deleteById(id);
+            empleadoRepository.findById(id).map(empleado -> {
+                
+                empleado.setEstado(false);
+                return empleadoRepository.save(empleado);
+            });
         } catch (Exception e) {
-            throw new RuntimeException("Error al eliminar el empleado: " + e.getMessage(), e);
+            throw new RuntimeException("Error al actualizar el empleado: " + e.getMessage(), e);
         }
     }
 

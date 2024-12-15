@@ -1,5 +1,7 @@
 package com.uv.psw.empleados;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import java.util.Date;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -7,15 +9,12 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "empleados")
+@Table(name = "\"Empleado\"")
 public class Empleado {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(nullable = false, unique = true, updatable = false)
-    private String clave;
+    @Column(name = "matricula", nullable = false, unique = true)
+    private String matricula;
 
     @NotBlank(message = "El nombre no puede estar vacío")
     @Size(max = 50, message = "El nombre no puede tener más de 50 caracteres")
@@ -57,22 +56,96 @@ public class Empleado {
 
     @Enumerated(EnumType.STRING)
     private Rol rol;
+    @JsonFormat(pattern = "yyyy-MM-dd")  // Establece el formato de fecha
+    @Column(name = "\"fechaN\"", nullable = false)
+    private Date fechaN;
 
-    // Getters y Setters
-    public Long getId() {
-        return id;
+    @Column(name = "\"clavePuesto\"", nullable = true)
+    private Integer clavePuesto; // Suponiendo que es un entero
+
+    @Column(name = "\"claveSupervisor\"", nullable = true)
+    private String claveSupervisor;
+    @JsonFormat(pattern = "yyyy-MM-dd")  // Establece el formato de fecha
+    @Column(name = "\"añoContratacion\"", nullable = false)
+    private Date añoContratacion;
+
+    @Column(name = "antiguedad", nullable = true)
+    private Integer antiguedad; // Suponiendo que es un entero
+
+    @Column(name = "estado", nullable = false)
+    private boolean estado;
+
+      @Column(name = "\"seguroSocial\"", nullable = false)
+    private String seguroSocial;
+
+    public String getSeguroSocial() {
+        return seguroSocial;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setSeguroSocial(String seguroSocial) {
+        this.seguroSocial = seguroSocial;
+    }
+    
+    
+    public String getMatricula() {
+        return matricula;
     }
 
-    public String getClave() {
-        return clave;
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
     }
 
-    public void setClave(String clave) {
-        this.clave = clave;
+    public Date getFechaN() {
+        return fechaN;
+    }
+
+    public void setFechaN(Date fechaN) {
+        this.fechaN = fechaN;
+    }
+
+    public Integer getClavePuesto() {
+        return clavePuesto;
+    }
+
+    public void setClavePuesto(Integer clavePuesto) {
+        this.clavePuesto = clavePuesto;
+    }
+
+    public String getClaveSupervisor() {
+        return claveSupervisor;
+    }
+
+    public void setClaveSupervisor(String claveSupervisor) {
+        this.claveSupervisor = claveSupervisor;
+    }
+
+    public Date getAñoContratacion() {
+        return añoContratacion;
+    }
+
+    public void setAñoContratacion(Date añoContratacion) {
+        this.añoContratacion = añoContratacion;
+    }
+
+    public Integer getAntiguedad() {
+        return antiguedad;
+    }
+
+    public void setAntiguedad(Integer antiguedad) {
+        this.antiguedad = antiguedad;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    // Constructor por defecto
+    public Empleado() {
+        this.estado = true; // Valor por defecto
     }
 
     public String getNombre() {

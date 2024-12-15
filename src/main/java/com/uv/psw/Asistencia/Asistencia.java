@@ -10,11 +10,11 @@ import java.time.LocalTime;
 public class Asistencia {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "clave")
     private Integer clave;
 
-    @Column(name = "claveEmpleado", nullable = false)
+    @Column(name = "\"claveEmpleado\"", nullable = false)
     private String claveEmpleado;
 
     @Column(name = "fecha", nullable = false)
@@ -24,7 +24,7 @@ public class Asistencia {
     private LocalTime hora;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "tipoAsistencia", nullable = false)
+    @Column(name = "\"tipoAsistencia\"", nullable = false)
     private TipoAsistencia tipoAsistencia;
 
 

@@ -37,7 +37,7 @@ public class AsistenciaController {
         nuevaAsistencia.setClaveEmpleado(asistenciaDTO.getClaveEmpleado());
         nuevaAsistencia.setFecha(asistenciaDTO.getFecha());
         nuevaAsistencia.setHora(asistenciaDTO.getHora());
-        nuevaAsistencia.setTipoAsistencia(TipoAsistencia.valueOf(asistenciaDTO.getTipoAsistencia().toUpperCase()));
+        nuevaAsistencia.setTipoAsistencia(asistenciaDTO.getTipoAsistencia());
 
         Asistencia asistenciaGuardada = asistenciaRepository.save(nuevaAsistencia);
 
@@ -80,7 +80,7 @@ public class AsistenciaController {
             asistencia.setClaveEmpleado(asistenciaDTO.getClaveEmpleado());
             asistencia.setFecha(asistenciaDTO.getFecha());
             asistencia.setHora(asistenciaDTO.getHora());
-            asistencia.setTipoAsistencia(TipoAsistencia.valueOf(asistenciaDTO.getTipoAsistencia().toUpperCase()));
+            asistencia.setTipoAsistencia(asistenciaDTO.getTipoAsistencia());
 
             Asistencia actualizada = asistenciaRepository.save(asistencia);
             return ResponseEntity.ok(actualizada);
