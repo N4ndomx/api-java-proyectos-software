@@ -1,5 +1,7 @@
-package com.uv.psw.auth;
+package com.uv.psw.config;
 
+import com.uv.psw.auth.AuthService;
+import com.uv.psw.auth.JwtRequestFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
@@ -42,6 +44,8 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
+                .cors()
+                .and()
                 .authorizeHttpRequests()
                 .antMatchers("/api/auth/verify","/api/auth/register", "/api/auth/login").permitAll()
                 .anyRequest().authenticated()
