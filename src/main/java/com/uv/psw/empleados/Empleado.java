@@ -1,6 +1,7 @@
 package com.uv.psw.empleados;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -27,7 +28,7 @@ public class Empleado {
     private String apellido;
 
     @Column(nullable = false)
-    private double salario;
+    private BigDecimal salario;
 
     @NotBlank(message = "La dirección no puede estar vacía")
     @Column(nullable = false)
@@ -75,7 +76,7 @@ public class Empleado {
     @Column(name = "estado", nullable = false)
     private boolean estado;
 
-      @Column(name = "\"seguroSocial\"", nullable = false)
+    @Column(name = "\"seguroSocial\"", nullable = false)
     private String seguroSocial;
 
     public String getSeguroSocial() {
@@ -85,8 +86,7 @@ public class Empleado {
     public void setSeguroSocial(String seguroSocial) {
         this.seguroSocial = seguroSocial;
     }
-    
-    
+
     public String getMatricula() {
         return matricula;
     }
@@ -164,11 +164,11 @@ public class Empleado {
         this.apellido = apellido;
     }
 
-    public double getSalario() {
+    public BigDecimal getSalario() {
         return salario;
     }
 
-    public void setSalario(double salario) {
+    public void setSalario(BigDecimal salario) {
         this.salario = salario;
     }
 
